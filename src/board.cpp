@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <string>
+#include <iostream>
 #include "board.h"
 
 char **make_default()
@@ -48,6 +51,33 @@ bool print(char **board)
     }
     fclose(out);
     return true;
+}
+
+void chess_move(char **board)
+{
+	bool flag = true;
+	while (flag) {
+		std::cout << "enter turns" << std::endl;
+		std::string str;
+		int i , j , k ,l;
+		std::cin >> str;
+		i = str[0] - 97;
+		j = str[1] - 49;
+		// std::cout << i << "  " << j << "  " << board[j][i] << std::endl;
+		if ( i < 0 || i > 7 || j < 0 || j > 7 || (board[j][i] != 'P' && board[j][i] != 'p')  ) {
+			std::cout << "invalid input" << std::endl;
+			continue;
+		}
+		k = str[3] - 97;
+		l = str[4] - 49;
+		if ( k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
+			std::cout << "invalid input" << std::endl;
+			continue;
+		}
+		board[l][k] = board[j][i];
+		board[j][i] = ' ';
+		flag = false;
+	}
 }
 
 void clear(char **board)
