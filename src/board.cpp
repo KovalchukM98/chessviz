@@ -1,11 +1,11 @@
+#include "board.h"
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <string>
-#include <iostream>
-#include "board.h"
 
-char **make_default()
+char** make_default()
 {
 	char** board = new char*[8];
     for (int i = 0; i < 8; ++i) {
@@ -39,38 +39,39 @@ char **make_default()
     return board;
 }
 
-bool print(char **board)
+bool print(char** board)
 {
 	FILE* out = fopen("board.txt", "w");
     if (out == NULL) {
         return false;
     }
     for (int i = 0; i < 8; ++i) {
-        fprintf(out, "%s" , board[i]);
+        fprintf(out, "%s", board[i]);
         fprintf(out, "\n");
     }
     fclose(out);
     return true;
 }
 
-void chess_move(char **board)
+void chess_move(char** board)
 {
 	bool flag = true;
 	while (flag) {
 		std::cout << "enter turns" << std::endl;
 		std::string str;
-		int i , j , k ,l;
-		std::cin >> str;	//e2-e4
+		int i, j, k, l;
+		std::cin >> str; // e2-e4
 		i = str[0] - 97;
 		j = str[1] - 49;
 		// std::cout << i << "  " << j << "  " << board[j][i] << std::endl;
-		if ( i < 0 || i > 7 || j < 0 || j > 7 || (board[j][i] != 'P' && board[j][i] != 'p')  ) {
+		if (i < 0 || i > 7 || j < 0 || j > 7 
+			|| (board[j][i] != 'P' && board[j][i] != 'p')) {
 			std::cout << "invalid input" << std::endl;
 			continue;
 		}
 		k = str[3] - 97;
 		l = str[4] - 49;
-		if ( k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
+		if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
 			std::cout << "invalid input" << std::endl;
 			continue;
 		}
@@ -80,10 +81,10 @@ void chess_move(char **board)
 	}
 }
 
-void clear(char **board)
+void clear(char** board)
 {
 	for (int i = 0; i < 8; ++i) {
-        delete [] board[i];
+        delete[] board[i];
     }
-    delete [] board;
+    delete[] board;
 }
