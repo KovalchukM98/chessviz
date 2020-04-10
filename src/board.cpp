@@ -55,34 +55,34 @@ bool print(char** board)
 
 void chess_move(char** board)
 {
-	bool flag = true;
-	while (flag) {
-		std::cout << "enter turns" << std::endl;
-		std::string str;
-		int i, j, k, l;
-		std::cin >> str;
+    bool flag = true;
+    while (flag) {
+        std::cout << "enter turns" << std::endl;
+        std::string str;
+        int i, j, k, l;
+        std::cin >> str;
         i = str[0] - 97;
-		j = str[1] - 49;
-		if (i < 0 || i > 7 || j < 0 || j > 7 
-			|| (board[j][i] != 'P' && board[j][i] != 'p')) {
-			std::cout << "invalid input" << std::endl;
-			continue;
-		}
-		k = str[3] - 97;
-		l = str[4] - 49;
-		if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
-			std::cout << "invalid input" << std::endl;
-			continue;
-		}
-		board[l][k] = board[j][i];
-		board[j][i] = ' ';
-		flag = false;
-	}
+        j = str[1] - 49;
+        if (i < 0 || i > 7 || j < 0 || j > 7 
+            || (board[j][i] != 'P' && board[j][i] != 'p')) {
+            std::cout << "invalid input" << std::endl;
+            continue;
+        }
+        k = str[3] - 97;
+        l = str[4] - 49;
+        if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
+            std::cout << "invalid input" << std::endl;
+            continue;
+        }
+        board[l][k] = board[j][i];
+        board[j][i] = ' ';
+        flag = false;
+    }
 }
 
 void clear(char** board)
 {
-	for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 8; ++i) {
         delete[] board[i];
     }
     delete[] board;
