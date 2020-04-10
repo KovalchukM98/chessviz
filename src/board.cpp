@@ -60,7 +60,7 @@ void chess_move(char **board)
 		std::cout << "enter turns" << std::endl;
 		std::string str;
 		int i , j , k ,l;
-		std::cin >> str;
+		std::cin >> str;	//e2-e4
 		i = str[0] - 97;
 		j = str[1] - 49;
 		// std::cout << i << "  " << j << "  " << board[j][i] << std::endl;
