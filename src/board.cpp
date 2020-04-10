@@ -60,10 +60,9 @@ void chess_move(char** board)
 		std::cout << "enter turns" << std::endl;
 		std::string str;
 		int i, j, k, l;
-		std::cin >> str; // e2-e4
-		i = str[0] - 97;
+		std::cin >> str;
+        i = str[0] - 97;
 		j = str[1] - 49;
-		// std::cout << i << "  " << j << "  " << board[j][i] << std::endl;
 		if (i < 0 || i > 7 || j < 0 || j > 7 
 			|| (board[j][i] != 'P' && board[j][i] != 'p')) {
 			std::cout << "invalid input" << std::endl;
