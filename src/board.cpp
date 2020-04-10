@@ -7,7 +7,7 @@
 
 char** make_default()
 {
-	char** board = new char*[8];
+    char** board = new char*[8];
     for (int i = 0; i < 8; ++i) {
         board[i] = new char[8];
     }
@@ -41,7 +41,7 @@ char** make_default()
 
 bool print(char** board)
 {
-	FILE* out = fopen("board.txt", "w");
+    FILE* out = fopen("board.txt", "w");
     if (out == NULL) {
         return false;
     }
