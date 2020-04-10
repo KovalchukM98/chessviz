@@ -63,7 +63,7 @@ void chess_move(char** board)
         std::cin >> str;
         i = str[0] - 97;
         j = str[1] - 49;
-        if (i < 0 || i > 7 || j < 0 || j > 7 
+        if (i < 0 || i > 7 || j < 0 || j > 7
             || (board[j][i] != 'P' && board[j][i] != 'p')) {
             std::cout << "invalid input" << std::endl;
             continue;
