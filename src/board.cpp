@@ -2,8 +2,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <string>
+#include <fstream>
+
+int FIRST_NUM_CODE = 49;
+int FIRST_LETTER_CODE = 97;
 
 char** make_default()
 {
@@ -41,15 +44,20 @@ char** make_default()
 
 bool print(char** board)
 {
-    FILE* out = fopen("board.txt", "w");
-    if (out == NULL) {
-        return false;
+    std::fstream out;
+    out.open("board.txt" , std::fstream::out);
+    std::string str;
+    str += ' ';
+    char c = 'a';
+    for (int i = 0 ; i < 8 ; ++i) {
+        str += c;
+        c++;
     }
+    out << str << std::endl;
     for (int i = 0; i < 8; ++i) {
-        fprintf(out, "%s", board[i]);
-        fprintf(out, "\n");
+        out << i+1 << board[i] << std::endl;
     }
-    fclose(out);
+    out.close();
     return true;
 }
 
@@ -60,19 +68,56 @@ void chess_move(char** board)
         std::cout << "enter turns" << std::endl;
         std::string str;
         int i, j, k, l;
-        std::cin >> str;
-        i = str[0] - 97;
-        j = str[1] - 49;
+        getline(std::cin, str);
+        if (str.size() < 5) {
+            std::cout << "invalid input" << std::endl;
+            continue;
+        }
+        i = str[0] - FIRST_LETTER_CODE;
+        j = str[1] - FIRST_NUM_CODE;
         if (i < 0 || i > 7 || j < 0 || j > 7
             || (board[j][i] != 'P' && board[j][i] != 'p')) {
             std::cout << "invalid input" << std::endl;
             continue;
         }
-        k = str[3] - 97;
-        l = str[4] - 49;
+        k = str[3] - FIRST_LETTER_CODE;
+        l = str[4] - FIRST_NUM_CODE;
         if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
             std::cout << "invalid input" << std::endl;
             continue;
+        }
+        if ( k != i) {
+            std::cout << "invalid input" << std::endl;
+            continue;
+        }
+        if (board[j][i] == 'p') {
+            printf("j = %d\n", j);
+            if (j == 1) {
+                if(l - j > 2) {
+                    std::cout << "invalid input" << std::endl;
+                    continue;
+                }
+            }
+            else {
+                if ( l - j != 1) {
+                    std::cout << "invalid input" << std::endl;
+                    continue;
+                }
+            }
+        }
+        if (board[j][i] == 'P') {
+            if (j == 6) {
+                if (j - l > 2) {
+                    std::cout << "invalid input" << std::endl;
+                    continue;
+                }
+            }
+            else {
+                if (j - l != 1) {
+                    std::cout << "invalid input" << std::endl;
+                    continue;
+                }
+            }
         }
         board[l][k] = board[j][i];
         board[j][i] = ' ';
