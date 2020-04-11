@@ -69,7 +69,11 @@ void chess_move(char** board)
         std::cout << "enter turns" << std::endl;
         std::string str;
         int i, j, k, l;
-        std::cin >> str;
+        getline(std::cin, str);
+        if (str.size() < 5) {
+            std::cout << "invalid input" << std::endl;
+            continue;
+        }
         i = str[0] - FIRST_LETTER_CODE;
         j = str[1] - FIRST_NUM_CODE;
         if (i < 0 || i > 7 || j < 0 || j > 7
