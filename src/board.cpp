@@ -93,7 +93,7 @@ void chess_move(char** board)
         if (board[j][i] == 'p') {
             printf("j = %d\n", j);
             if (j == 1) {
-                if( l - j > 2) {
+                if ( l - j > 2) {
                     std::cout << "invalid input" << std::endl;
                     continue;
                 }
