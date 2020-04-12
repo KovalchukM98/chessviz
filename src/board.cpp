@@ -1,9 +1,9 @@
 #include "board.h"
+#include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include <fstream>
 
 int FIRST_NUM_CODE = 49;
 int FIRST_LETTER_CODE = 97;
@@ -45,17 +45,17 @@ char** make_default()
 bool print(char** board)
 {
     std::fstream out;
-    out.open("board.txt" , std::fstream::out);
+    out.open("board.txt", std::fstream::out);
     std::string str;
     str += ' ';
     char c = 'a';
-    for (int i = 0 ; i < 8 ; ++i) {
+    for (int i = 0; i < 8; ++i) {
         str += c;
         c++;
     }
     out << str << std::endl;
     for (int i = 0; i < 8; ++i) {
-        out << i+1 << board[i] << std::endl;
+        out << i + 1 << board[i] << std::endl;
     }
     out.close();
     return true;
@@ -86,20 +86,19 @@ void chess_move(char** board)
             std::cout << "invalid input" << std::endl;
             continue;
         }
-        if ( k != i) {
+        if (k != i) {
             std::cout << "invalid input" << std::endl;
             continue;
         }
         if (board[j][i] == 'p') {
             printf("j = %d\n", j);
             if (j == 1) {
-                if(l - j > 2) {
+                if( l - j > 2) {
                     std::cout << "invalid input" << std::endl;
                     continue;
                 }
-            }
-            else {
-                if ( l - j != 1) {
+            } else {
+                if (l - j != 1) {
                     std::cout << "invalid input" << std::endl;
                     continue;
                 }
@@ -111,8 +110,7 @@ void chess_move(char** board)
                     std::cout << "invalid input" << std::endl;
                     continue;
                 }
-            }
-            else {
+            } else {
                 if (j - l != 1) {
                     std::cout << "invalid input" << std::endl;
                     continue;
