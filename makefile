@@ -1,6 +1,6 @@
-all: bin/programm
+all: bin/run.out
 
-bin/programm: build/main.o build/board.o
+bin/run.out: build/main.o build/board.o
 	g++ -Wall --std=c++17 -Werror build/main.o build/board.o -o bin/run.out
 
 build/main.o: src/main.cpp
@@ -9,4 +9,4 @@ build/board.o: src/board.cpp
 	g++ -Wall --std=c++17 -Werror -c src/board.cpp -o build/board.o
 
 clean:
-	rm -f build/*.o
+	rm -rf build/*.o
