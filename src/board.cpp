@@ -61,6 +61,14 @@ bool print(char** board)
     return true;
 }
 
+void show(char** board){
+    std::cout << " abcdefgh" << std::endl;
+    for (int i = 0; i < 8; ++i) {
+        std::cout << i + 1 << board[i] << std::endl;
+    }
+    std::cout << std::endl;
+}
+
 void chess_move(char** board, std::string str)
 {
     int i, j, k, l;

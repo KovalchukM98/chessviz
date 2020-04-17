@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
         std::string str;
         getline(std::cin, str);
         chess_move(board, str);
+        show(board);
     }
     print(board);
     clear(board);
