@@ -61,7 +61,8 @@ bool print(char** board)
     return true;
 }
 
-void show(char** board){
+void show(char** board)
+{
     std::cout << " abcdefgh" << std::endl;
     for (int i = 0; i < 8; ++i) {
         std::cout << i + 1 << board[i] << std::endl;
