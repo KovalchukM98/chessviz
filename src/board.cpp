@@ -61,66 +61,58 @@ bool print(char** board)
     return true;
 }
 
-void chess_move(char** board)
+void chess_move(char** board, std::string str)
 {
-    bool flag = true;
-    while (flag) {
-        std::cout << "enter turns" << std::endl;
-        std::string str;
-        int i, j, k, l;
-        getline(std::cin, str);
-        if (str.size() < 5) {
-            std::cout << "invalid input" << std::endl;
-            continue;
-        }
-        i = str[0] - FIRST_LETTER_CODE;
-        j = str[1] - FIRST_NUM_CODE;
-        if (i < 0 || i > 7 || j < 0 || j > 7
-            || (board[j][i] != 'P' && board[j][i] != 'p')) {
-            std::cout << "invalid input" << std::endl;
-            continue;
-        }
-        k = str[3] - FIRST_LETTER_CODE;
-        l = str[4] - FIRST_NUM_CODE;
-        if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
-            std::cout << "invalid input" << std::endl;
-            continue;
-        }
-        if (k != i) {
-            std::cout << "invalid input" << std::endl;
-            continue;
-        }
-        if (board[j][i] == 'p') {
-            printf("j = %d\n", j);
-            if (j == 1) {
-                if (l - j > 2) {
-                    std::cout << "invalid input" << std::endl;
-                    continue;
-                }
-            } else {
-                if (l - j != 1) {
-                    std::cout << "invalid input" << std::endl;
-                    continue;
-                }
-            }
-        }
-        if (board[j][i] == 'P') {
-            if (j == 6) {
-                if (j - l > 2) {
-                    std::cout << "invalid input" << std::endl;
-                    continue;
-                }
-            } else {
-                if (j - l != 1) {
-                    std::cout << "invalid input" << std::endl;
-                    continue;
-                }
-            }
-        }
-        board[l][k] = board[j][i];
-        board[j][i] = ' ';
-        flag = false;
+    int i, j, k, l;
+    if (str.size() < 5) {
+        std::cout << "invalid input" << std::endl;
+        return;
     }
+    i = str[0] - FIRST_LETTER_CODE;
+    j = str[1] - FIRST_NUM_CODE;
+    if (i < 0 || i > 7 || j < 0 || j > 7
+        || (board[j][i] != 'P' && board[j][i] != 'p')) {
+        std::cout << "invalid input" << std::endl;
+        return;
+    }
+    k = str[3] - FIRST_LETTER_CODE;
+    l = str[4] - FIRST_NUM_CODE;
+    if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
+        std::cout << "invalid input" << std::endl;
+        return;
+    }
+    if (k != i) {
+        std::cout << "invalid input" << std::endl;
+        return;
+    }
+    if (board[j][i] == 'p') {
+        if (j == 1) {
+            if (l - j > 2) {
+                std::cout << "invalid input" << std::endl;
+                return;
+            }
+        } else {
+            if (l - j != 1) {
+                std::cout << "invalid input" << std::endl;
+                return;
+            }
+        }
+    }
+    if (board[j][i] == 'P') {
+        if (j == 6) {
+            if (j - l > 2) {
+                std::cout << "invalid input" << std::endl;
+                return;
+            }
+        } else {
+            if (j - l != 1) {
+                std::cout << "invalid input" << std::endl;
+                return;
+            }
+        }
+    }
+    board[l][k] = board[j][i];
+    board[j][i] = ' ';
 }
 
 void clear(char** board)
