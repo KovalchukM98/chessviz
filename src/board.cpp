@@ -56,7 +56,7 @@ bool print(char** board)
     out << str << std::endl;
     for (int i = 0; i < 8; ++i) {
         str.clear();
-        for (int j = 0; j < 8; ++j){
+        for (int j = 0; j < 8; ++j) {
             str.push_back(board[i][j]);
         }
         out << i + 1 << str << std::endl;
@@ -65,12 +65,13 @@ bool print(char** board)
     return true;
 }
 
-void show(char** board){
+void show(char** board)
+{
     std::cout << " abcdefgh" << std::endl;
     std::string str;
     for (int i = 0; i < 8; ++i) {
         str.clear();
-        for (int j = 0; j < 8; ++j){
+        for (int j = 0; j < 8; ++j) {
             str.push_back(board[i][j]);
         }
         std::cout << i + 1 << str << std::endl;
