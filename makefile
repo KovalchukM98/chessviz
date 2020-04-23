@@ -8,8 +8,6 @@ build/main.o: src/main.cpp
 build/board.o: src/board.cpp
 	g++ -Wall --std=c++17 -Werror -c src/board.cpp -o build/board.o
 
-clean:
-	rm -rf *.o build/*.o
-
-clean_all:
+.PHONY : clean
+clean :
 	rm -rf *.o build/*.o
