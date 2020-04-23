@@ -55,7 +55,11 @@ bool print(char** board)
     }
     out << str << std::endl;
     for (int i = 0; i < 8; ++i) {
-        out << i + 1 << board[i] << std::endl;
+        str.clear();
+        for (int j = 0; j < 8; ++j) {
+            str.push_back(board[i][j]);
+        }
+        out << i + 1 << str << std::endl;
     }
     out.close();
     return true;
@@ -64,46 +68,51 @@ bool print(char** board)
 void show(char** board)
 {
     std::cout << " abcdefgh" << std::endl;
+    std::string str;
     for (int i = 0; i < 8; ++i) {
-        std::cout << i + 1 << board[i] << std::endl;
+        str.clear();
+        for (int j = 0; j < 8; ++j) {
+            str.push_back(board[i][j]);
+        }
+        std::cout << i + 1 << str << std::endl;
     }
     std::cout << std::endl;
 }
 
-void chess_move(char** board, std::string str)
+bool chess_move(char** board, std::string str)
 {
     int i, j, k, l;
     if (str.size() < 5) {
         std::cout << "invalid input" << std::endl;
-        return;
+        return false;
     }
     i = str[0] - FIRST_LETTER_CODE;
     j = str[1] - FIRST_NUM_CODE;
     if (i < 0 || i > 7 || j < 0 || j > 7
         || (board[j][i] != 'P' && board[j][i] != 'p')) {
         std::cout << "invalid input" << std::endl;
-        return;
+        return false;
     }
     k = str[3] - FIRST_LETTER_CODE;
     l = str[4] - FIRST_NUM_CODE;
     if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
         std::cout << "invalid input" << std::endl;
-        return;
+        return false;
     }
     if (k != i) {
         std::cout << "invalid input" << std::endl;
-        return;
+        return false;
     }
     if (board[j][i] == 'p') {
         if (j == 1) {
             if (l - j > 2) {
                 std::cout << "invalid input" << std::endl;
-                return;
+                return false;
             }
         } else {
             if (l - j != 1) {
                 std::cout << "invalid input" << std::endl;
-                return;
+                return false;
             }
         }
     }
@@ -111,17 +120,18 @@ void chess_move(char** board, std::string str)
         if (j == 6) {
             if (j - l > 2) {
                 std::cout << "invalid input" << std::endl;
-                return;
+                return false;
             }
         } else {
             if (j - l != 1) {
                 std::cout << "invalid input" << std::endl;
-                return;
+                return false;
             }
         }
     }
     board[l][k] = board[j][i];
     board[j][i] = ' ';
+    return true;
 }
 
 void clear(char** board)

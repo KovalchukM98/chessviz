@@ -10,6 +10,6 @@ bool print(char** board);
 
 void show(char** board);
 
-void chess_move(char** board, std::string str);
+bool chess_move(char** board, std::string str);
 
 #endif

@@ -9,4 +9,7 @@ build/board.o: src/board.cpp
 	g++ -Wall --std=c++17 -Werror -c src/board.cpp -o build/board.o
 
 clean:
-	rm -rf build/*.o
+	rm -rf *.o build/*.o
+
+clean_all:
+	rm -rf *.o build/*.o
