@@ -9,6 +9,14 @@ int FIRST_NUM_CODE = 49;
 int FIRST_LETTER_CODE = 97;
 int BOARD_SIZE = 8;
 
+int min(int a, int b)
+{
+    if (a >= b) {
+        return b;
+    }
+    return a;
+}
+
 char** make_default()
 {
     char** board = new char*[BOARD_SIZE];
@@ -112,16 +120,32 @@ bool is_pawn_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
 {
+    int X_dir = -1;
+    int Y_dir = -1;
     int a = i - k;
     int b = j - l;
     if (a < 0) {
+        X_dir = 1;
         a *= -1;
     }
     if (b < 0) {
+        Y_dir = 1;
         b *= -1;
     }
     if (a != b) {
         return false;
+    }
+    // std::cout << "let_dir = " << X_dir <<std::endl;
+    // std::cout << "num_dir = " << Y_dir <<std::endl;
+    i += X_dir;
+    j += Y_dir;
+    while (i != k && k != l) {
+        // std::cout << "b = " << board[j][i] <<std::endl;
+        if (board[j][i] != ' ') {
+            return false;
+        }
+        i += X_dir;
+        j += Y_dir;
     }
     return true;
 }
@@ -135,7 +159,13 @@ bool is_rook_move_valid(char** board, int i, int j, int k, int l){
     return true;
 }
 
-bool is_queen_move_valid(char** board, int i, int j, int k, int l);
+bool is_queen_move_valid(char** board, int i, int j, int k, int l)
+{
+    if (!is_bishop_move_valid(board, i, j, k, l) && !is_rook_move_valid(board, i, j, k, l)) {
+        return false;
+    }
+    return true;
+}
 
 bool is_king_move_valid(char** board, int i, int j, int k, int l)
 {
@@ -179,6 +209,9 @@ bool chess_move(char** board, std::string str)
     if(!is_symbols_valid(i, j, k, l) || board[l][k] != ' '){
         return false;
     }
+    if (i == j && k == l) {
+        return false;
+    }
     bool is_valid = false;
     switch (board[j][i]) {
         case 'P':
@@ -199,6 +232,11 @@ bool chess_move(char** board, std::string str)
         case 'R':
         case 'r':
         is_valid = is_rook_move_valid(board, i, j, k, l);
+        break;
+
+        case 'Q':
+        case 'q':
+        is_valid = is_queen_move_valid(board, i, j, k, l);
         break;
 
         default:

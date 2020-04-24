@@ -26,4 +26,6 @@ bool is_symbols_valid(int i, int j, int k , int l);
 
 bool chess_move(char** board, std::string str);
 
+int min(int a, int b);
+
 #endif
