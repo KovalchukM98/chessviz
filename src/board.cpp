@@ -7,12 +7,13 @@
 
 int FIRST_NUM_CODE = 49;
 int FIRST_LETTER_CODE = 97;
+int BOARD_SIZE = 8;
 
 char** make_default()
 {
-    char** board = new char*[8];
+    char** board = new char*[BOARD_SIZE];
     for (int i = 0; i < 8; ++i) {
-        board[i] = new char[8];
+        board[i] = new char[BOARD_SIZE];
     }
     board[0][0] = 'c';
     board[0][1] = 'h';
@@ -22,12 +23,12 @@ char** make_default()
     board[0][5] = 'e';
     board[0][6] = 'h';
     board[0][7] = 'c';
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
         board[1][i] = 'p';
         board[6][i] = 'P';
     }
     for (int i = 2; i < 6; ++i) {
-        for (int j = 0; j < 8; ++j) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
             board[i][j] = ' ';
         }
     }
@@ -47,16 +48,16 @@ bool print(char** board)
     std::fstream out;
     out.open("board.txt", std::fstream::out);
     std::string str;
-    str += ' ';
+    str.push_back(' ');
     char c = 'a';
-    for (int i = 0; i < 8; ++i) {
-        str += c;
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        str.push_back(c);
         c++;
     }
     out << str << std::endl;
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
         str.clear();
-        for (int j = 0; j < 8; ++j) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
             str.push_back(board[i][j]);
         }
         out << i + 1 << str << std::endl;
@@ -69,9 +70,9 @@ void show(char** board)
 {
     std::cout << " abcdefgh" << std::endl;
     std::string str;
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
         str.clear();
-        for (int j = 0; j < 8; ++j) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
             str.push_back(board[i][j]);
         }
         std::cout << i + 1 << str << std::endl;
@@ -129,7 +130,7 @@ bool chess_move(char** board, std::string str)
 
 void clear(char** board)
 {
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
         delete[] board[i];
     }
     delete[] board;
