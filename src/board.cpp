@@ -15,14 +15,14 @@ char** make_default()
     for (int i = 0; i < 8; ++i) {
         board[i] = new char[BOARD_SIZE];
     }
-    board[0][0] = 'c';
+    board[0][0] = 'r';
     board[0][1] = 'h';
-    board[0][2] = 'e';
+    board[0][2] = 'b';
     board[0][3] = 'q';
     board[0][4] = 'k';
-    board[0][5] = 'e';
+    board[0][5] = 'b';
     board[0][6] = 'h';
-    board[0][7] = 'c';
+    board[0][7] = 'r';
     for (int i = 0; i < BOARD_SIZE; ++i) {
         board[1][i] = 'p';
         board[6][i] = 'P';
@@ -32,14 +32,14 @@ char** make_default()
             board[i][j] = ' ';
         }
     }
-    board[7][0] = 'C';
+    board[7][0] = 'R';
     board[7][1] = 'H';
-    board[7][2] = 'E';
+    board[7][2] = 'B';
     board[7][3] = 'K';
     board[7][4] = 'Q';
-    board[7][5] = 'E';
+    board[7][5] = 'B';
     board[7][6] = 'H';
-    board[7][7] = 'C';
+    board[7][7] = 'R';
     return board;
 }
 
@@ -80,24 +80,8 @@ void show(char** board)
     std::cout << std::endl;
 }
 
-bool chess_move(char** board, std::string str)
+bool is_pawn_move_valid(char** board, int i, int j, int k, int l)
 {
-    int i, j, k, l;
-    if (str.size() < 5) {
-        std::cout << "invalid input" << std::endl;
-        return false;
-    }
-    i = str[0] - FIRST_LETTER_CODE;
-    j = str[1] - FIRST_NUM_CODE;
-    if (i < 0 || i > 7 || j < 0 || j > 7
-        || (board[j][i] != 'P' && board[j][i] != 'p')) {
-        return false;
-    }
-    k = str[3] - FIRST_LETTER_CODE;
-    l = str[4] - FIRST_NUM_CODE;
-    if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
-        return false;
-    }
     if (k != i) {
         return false;
     }
@@ -122,6 +106,77 @@ bool chess_move(char** board, std::string str)
                 return false;
             }
         }
+    }
+    return true;
+}
+
+bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
+{
+    int a = i - k;
+    int b = j - l;
+    if (a < 0) {
+        a *= -1;
+    }
+    if (b < 0) {
+        b *= -1;
+    }
+    if (a != b) {
+        return false;
+    }
+    return true;
+}
+
+bool is_horse_move_valid(char** board, int i, int j, int k, int l);
+
+bool is_rook_move_valid(char** board, int i, int j, int k, int l)
+
+bool is_queen_move_valid(char** board, int i, int j, int k, int l);
+
+bool is_king_move_valid(char** board, int i, int j, int k, int l);
+
+
+bool is_symbols_valid(int i, int j, int k , int l)
+{
+    if (i < 0 || i > 7 || j < 0 || j > 7) {
+        return false;
+    }
+    
+    if (k < 0 || k > 7 || l < 0 || l > 7 ) {
+        return false;
+    }
+    return true;
+}
+
+bool chess_move(char** board, std::string str)
+{
+    int i, j, k, l;
+    if (str.size() < 5) {
+        return false;
+    }
+    i = str[0] - FIRST_LETTER_CODE;
+    j = str[1] - FIRST_NUM_CODE;
+    k = str[3] - FIRST_LETTER_CODE;
+    l = str[4] - FIRST_NUM_CODE;
+    if(!is_symbols_valid(i, j, k, l) || board[l][k] != ' '){
+        return false;
+    }
+    bool is_valid = false;
+    switch (board[j][i]) {
+        case 'P':
+        case 'p':
+        is_valid = is_pawn_move_valid(board, i, j, k, l);
+        break;
+
+        case 'B':
+        case 'b':
+        is_valid = is_bishop_move_valid(board, i, j, k, l);
+        break;
+
+        default:
+        return false;
+    }
+    if (!is_valid) {
+        return false;
     }
     board[l][k] = board[j][i];
     board[j][i] = ' ';
