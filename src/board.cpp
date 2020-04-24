@@ -128,11 +128,25 @@ bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_horse_move_valid(char** board, int i, int j, int k, int l);
 
-bool is_rook_move_valid(char** board, int i, int j, int k, int l)
+bool is_rook_move_valid(char** board, int i, int j, int k, int l);
 
 bool is_queen_move_valid(char** board, int i, int j, int k, int l);
 
-bool is_king_move_valid(char** board, int i, int j, int k, int l);
+bool is_king_move_valid(char** board, int i, int j, int k, int l)
+{
+    int a = i - k;
+    int b = j - l;
+    if (a < 0) {
+        a *= -1;
+    }
+    if (b < 0) {
+        b *= -1;
+    }
+    if (a > 1 || b > 1) {
+        return false;
+    }
+    return true;
+}
 
 
 bool is_symbols_valid(int i, int j, int k , int l)
@@ -170,6 +184,11 @@ bool chess_move(char** board, std::string str)
         case 'B':
         case 'b':
         is_valid = is_bishop_move_valid(board, i, j, k, l);
+        break;
+
+        case 'K':
+        case 'k':
+        is_valid = is_king_move_valid(board, i, j, k, l);
         break;
 
         default:
