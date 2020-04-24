@@ -158,7 +158,24 @@ bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
     return true;
 }
 
-bool is_horse_move_valid(char** board, int i, int j, int k, int l);
+bool is_horse_move_valid(char** board, int i, int j, int k, int l)
+{
+    int a = i - k;
+    int b = j - l;
+    if (a < 0) {
+        a *= -1;
+    }
+    if (b < 0) {
+        b *= -1;
+    }
+    if (a == 2 && b == 1) {
+        return true;
+    }
+    if (a == 1 && b == 2) {
+        return true;
+    }
+    return false;
+}
 
 bool is_rook_move_valid(char** board, int i, int j, int k, int l)
 {
