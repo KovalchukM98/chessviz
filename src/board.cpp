@@ -190,7 +190,7 @@ bool is_rook_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_queen_move_valid(char** board, int i, int j, int k, int l)
 {
-    if (!is_bishop_move_valid(board, i, j, k, l) 
+    if (!is_bishop_move_valid(board, i, j, k, l)
         && !is_rook_move_valid(board, i, j, k, l)) {
         return false;
     }
@@ -219,7 +219,6 @@ bool is_symbols_valid(int i, int j, int k, int l)
     if (i < 0 || i > 7 || j < 0 || j > 7) {
         return false;
     }
-    
     if (k < 0 || k > 7 || l < 0 || l > 7) {
         return false;
     }
@@ -236,7 +235,7 @@ bool chess_move(char** board, std::string str)
     j = str[1] - FIRST_NUM_CODE;
     k = str[3] - FIRST_LETTER_CODE;
     l = str[4] - FIRST_NUM_CODE;
-    if(!is_symbols_valid(i, j, k, l) || board[l][k] != ' '){
+    if (!is_symbols_valid(i, j, k, l) || board[l][k] != ' ') {
         return false;
     }
     if (i == j && k == l) {
