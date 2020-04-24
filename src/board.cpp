@@ -213,7 +213,6 @@ bool is_king_move_valid(char** board, int i, int j, int k, int l)
     return true;
 }
 
-
 bool is_symbols_valid(int i, int j, int k, int l)
 {
     if (i < 0 || i > 7 || j < 0 || j > 7) {
