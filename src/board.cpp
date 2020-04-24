@@ -160,7 +160,8 @@ bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_horse_move_valid(char** board, int i, int j, int k, int l);
 
-bool is_rook_move_valid(char** board, int i, int j, int k, int l){
+bool is_rook_move_valid(char** board, int i, int j, int k, int l)
+{
     if (i != k && j != l) {
         return false;
     }
@@ -189,7 +190,8 @@ bool is_rook_move_valid(char** board, int i, int j, int k, int l){
 
 bool is_queen_move_valid(char** board, int i, int j, int k, int l)
 {
-    if (!is_bishop_move_valid(board, i, j, k, l) && !is_rook_move_valid(board, i, j, k, l)) {
+    if (!is_bishop_move_valid(board, i, j, k, l) 
+        && !is_rook_move_valid(board, i, j, k, l)) {
         return false;
     }
     return true;
@@ -212,13 +214,13 @@ bool is_king_move_valid(char** board, int i, int j, int k, int l)
 }
 
 
-bool is_symbols_valid(int i, int j, int k , int l)
+bool is_symbols_valid(int i, int j, int k, int l)
 {
     if (i < 0 || i > 7 || j < 0 || j > 7) {
         return false;
     }
     
-    if (k < 0 || k > 7 || l < 0 || l > 7 ) {
+    if (k < 0 || k > 7 || l < 0 || l > 7) {
         return false;
     }
     return true;
@@ -242,32 +244,37 @@ bool chess_move(char** board, std::string str)
     }
     bool is_valid = false;
     switch (board[j][i]) {
-        case 'P':
-        case 'p':
+    case 'P':
+    case 'p':
         is_valid = is_pawn_move_valid(board, i, j, k, l);
         break;
 
-        case 'B':
-        case 'b':
-        is_valid = is_bishop_move_valid(board, i, j, k, l);
-        break;
-
-        case 'K':
-        case 'k':
-        is_valid = is_king_move_valid(board, i, j, k, l);
-        break;
-
-        case 'R':
-        case 'r':
+    case 'R':
+    case 'r':
         is_valid = is_rook_move_valid(board, i, j, k, l);
         break;
 
-        case 'Q':
-        case 'q':
+    case 'B':
+    case 'b':
+        is_valid = is_bishop_move_valid(board, i, j, k, l);
+        break;
+
+    case 'H':
+    case 'h':
+        is_valid = is_horse_move_valid(board, i, j, k, l);
+        break;
+
+    case 'K':
+    case 'k':
+        is_valid = is_king_move_valid(board, i, j, k, l);
+        break;
+
+    case 'Q':
+    case 'q':
         is_valid = is_queen_move_valid(board, i, j, k, l);
         break;
 
-        default:
+    default:
         return false;
     }
     if (!is_valid) {

@@ -22,7 +22,7 @@ bool is_queen_move_valid(char** board, int i, int j, int k, int l);
 
 bool is_king_move_valid(char** board, int i, int j, int k, int l);
 
-bool is_symbols_valid(int i, int j, int k , int l);
+bool is_symbols_valid(int i, int j, int k, int l);
 
 bool chess_move(char** board, std::string str);
 
