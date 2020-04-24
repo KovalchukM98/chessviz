@@ -13,6 +13,8 @@ int main(int argc, char* argv[])
         getline(std::cin, str);
         if (chess_move(board, str)) {
             show(board);
+        } else {
+            std::cout << "invalid input" << std::endl;
         }
     }
     print(board);

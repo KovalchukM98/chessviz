@@ -90,28 +90,23 @@ bool chess_move(char** board, std::string str)
     j = str[1] - FIRST_NUM_CODE;
     if (i < 0 || i > 7 || j < 0 || j > 7
         || (board[j][i] != 'P' && board[j][i] != 'p')) {
-        std::cout << "invalid input" << std::endl;
         return false;
     }
     k = str[3] - FIRST_LETTER_CODE;
     l = str[4] - FIRST_NUM_CODE;
     if (k < 0 || k > 7 || l < 0 || l > 7 || board[l][k] != ' ') {
-        std::cout << "invalid input" << std::endl;
         return false;
     }
     if (k != i) {
-        std::cout << "invalid input" << std::endl;
         return false;
     }
     if (board[j][i] == 'p') {
         if (j == 1) {
             if (l - j > 2) {
-                std::cout << "invalid input" << std::endl;
                 return false;
             }
         } else {
             if (l - j != 1) {
-                std::cout << "invalid input" << std::endl;
                 return false;
             }
         }
@@ -119,12 +114,10 @@ bool chess_move(char** board, std::string str)
     if (board[j][i] == 'P') {
         if (j == 6) {
             if (j - l > 2) {
-                std::cout << "invalid input" << std::endl;
                 return false;
             }
         } else {
             if (j - l != 1) {
-                std::cout << "invalid input" << std::endl;
                 return false;
             }
         }
