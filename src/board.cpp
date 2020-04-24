@@ -17,6 +17,14 @@ int min(int a, int b)
     return a;
 }
 
+int max(int a, int b)
+{
+    if (a >= b) {
+        return a;
+    }
+    return b;
+}
+
 char** make_default()
 {
     char** board = new char*[BOARD_SIZE];
@@ -155,6 +163,26 @@ bool is_horse_move_valid(char** board, int i, int j, int k, int l);
 bool is_rook_move_valid(char** board, int i, int j, int k, int l){
     if (i != k && j != l) {
         return false;
+    }
+    if (i == k) {
+        for (int n = min(j, l); n < max(j, l); ++n) {
+            if (n == j) {
+                continue;
+            }
+            if (board[n][i] != ' ') {
+                return false;
+            }
+        }
+    }
+    if (j == l) {
+        for (int n = min(i, k); n < max(i, k); ++n) {
+            if (n == i) {
+                continue;
+            }
+            if (board[j][n] != ' ') {
+                return false;
+            }
+        }
     }
     return true;
 }
