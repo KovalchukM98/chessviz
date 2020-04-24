@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     char** board = make_default();
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 10; ++i) {
         std::cout << "enter turn" << std::endl;
         std::string str;
         getline(std::cin, str);
