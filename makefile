@@ -1,12 +1,21 @@
-all: bin/run.out
+CFLAGS = -Wall -Werror --std=c++17
+
+all: bin/run.out bin/test.out
 
 bin/run.out: build/main.o build/board.o
-	g++ -Wall --std=c++17 -Werror build/main.o build/board.o -o bin/run.out
+	g++ $(CFLAGS) build/main.o build/board.o -o bin/run.out
 
 build/main.o: src/main.cpp
-	g++ -Wall --std=c++17 -Werror -c src/main.cpp -o build/main.o
+	g++ $(CFLAGS) -c src/main.cpp -o build/main.o
+
 build/board.o: src/board.cpp
-	g++ -Wall --std=c++17 -Werror -c src/board.cpp -o build/board.o
+	g++ $(CFLAGS) -c src/board.cpp -o build/board.o
+
+bin/test.out: build/test.o build/board.o
+	g++ $(CFLAGS) -Lgoogletest/lib -l gtest_main -lpthread build/test.o build/board.o -o bin/test.out
+
+build/test.o: test/test.cpp
+	g++ $(CFLAGS) -I googletest/googletest/include -I src -c test/test.cpp -o build/test.o
 
 .PHONY : clean
 clean :

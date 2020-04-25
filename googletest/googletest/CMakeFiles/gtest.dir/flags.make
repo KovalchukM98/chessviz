@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -Wall -Wshadow -Werror -DGTEST_HAS_PTHREAD=1 -fexceptions -W
 
 CXX_DEFINES = -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_EXPORTS
 
-CXX_INCLUDES = -I/home/mihail/Загрузки/googletest-release-1.10.0/googletest/include -I/home/mihail/Загрузки/googletest-release-1.10.0/googletest 
+CXX_INCLUDES = -I/home/mihail/Документы/trpo/chessviz/googletest/googletest/include -I/home/mihail/Документы/trpo/chessviz/googletest/googletest 
 

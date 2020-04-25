@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/mihail/Загрузки/googletest-release-1.10.0/googletest/src/gtest_main.cc
+/home/mihail/Документы/trpo/chessviz/googletest/googletest/src/gtest_main.cc
 cstdio
 -
 gtest/gtest.h
-/home/mihail/Загрузки/googletest-release-1.10.0/googletest/src/gtest/gtest.h
+/home/mihail/Документы/trpo/chessviz/googletest/googletest/src/gtest/gtest.h
 
 googletest/include/gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h
