@@ -168,7 +168,7 @@ bool is_bishop_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_horse_move_valid(char** board, int i, int j, int k, int l)
 {
-    if (board[l][k] != ' '){
+    if (board[l][k] != ' ') {
         return false;
     }
     int a = i - k;
