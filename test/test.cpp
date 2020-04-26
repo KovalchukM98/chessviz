@@ -58,8 +58,23 @@ TEST(board, is_bishop_move_valid) {
 	clear(board);
 }
 
-// int main(int argc , char* argv[])
-// {
-// 	::testing::InitGoogleTest(&argc, argv);
-// 	return RUN_ALL_TESTS();
-// }
+TEST(board, is_rook_move_valid){
+	char** board = make_default();
+	ASSERT_FALSE(is_rook_move_valid(board, 0, 0, 0, 1));
+	ASSERT_FALSE(is_rook_move_valid(board, 0, 0, 0, 5));
+	std::string str = "a2-a4";
+	chess_move(board, str);
+	ASSERT_FALSE(is_rook_move_valid(board, 0, 0, 0, 5));
+	ASSERT_TRUE(is_rook_move_valid(board, 0, 0, 0, 2));
+	str = "a1-a3";
+	chess_move(board, str);
+	ASSERT_TRUE(is_rook_move_valid(board, 0, 2, 7, 2));
+	str = "a3-h3";
+	chess_move(board, str);
+	ASSERT_TRUE(is_rook_move_valid(board, 7, 2, 7, 5));
+	str = "e2-e3";
+	chess_move(board, str);
+	ASSERT_FALSE(is_rook_move_valid(board, 7, 2, 1, 2));
+	// show(board);
+	clear(board);
+}

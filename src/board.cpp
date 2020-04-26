@@ -191,7 +191,7 @@ bool is_rook_move_valid(char** board, int i, int j, int k, int l)
         return false;
     }
     if (i == k) {
-        for (int n = min(j, l); n < max(j, l); ++n) {
+        for (int n = min(j, l); n <= max(j, l); ++n) {
             if (n == j) {
                 continue;
             }
