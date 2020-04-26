@@ -123,6 +123,14 @@ bool is_pawn_move_valid(char** board, int i, int j, int k, int l)
             }
         }
     }
+    for (int n = min(j, l); n <= max(j, l); n++) {
+        if (n == j) {
+            continue;
+        }
+        if (board[n][i] != ' ') {
+                return false;
+        }
+    }
     return true;
 }
 
@@ -193,7 +201,7 @@ bool is_rook_move_valid(char** board, int i, int j, int k, int l)
         }
     }
     if (j == l) {
-        for (int n = min(i, k); n < max(i, k); ++n) {
+        for (int n = min(i, k); n <= max(i, k); ++n) {
             if (n == i) {
                 continue;
             }
