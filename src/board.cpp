@@ -128,7 +128,7 @@ bool is_pawn_move_valid(char** board, int i, int j, int k, int l)
             continue;
         }
         if (board[n][i] != ' ') {
-                return false;
+            return false;
         }
     }
     return true;
