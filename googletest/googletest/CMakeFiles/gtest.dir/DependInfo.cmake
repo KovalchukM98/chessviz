@@ -4,19 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mihail/Документы/trpo/chessviz/googletest/googletest/src/gtest-all.cc" "/home/mihail/Документы/trpo/chessviz/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+  "/home/mihail/Документы/trpo/googletest-release-1.10.0/googletest/src/gtest-all.cc" "/home/mihail/Документы/trpo/chessviz/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "GTEST_CREATE_SHARED_LIBRARY=1"
-  )
-
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "googletest/include"
-  "googletest"
+  "/home/mihail/Документы/trpo/googletest-release-1.10.0/googletest/include"
+  "/home/mihail/Документы/trpo/googletest-release-1.10.0/googletest"
   )
 
 # Targets to which this target links.
