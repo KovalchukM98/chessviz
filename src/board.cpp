@@ -227,6 +227,9 @@ bool is_queen_move_valid(char** board, int i, int j, int k, int l)
 
 bool is_king_move_valid(char** board, int i, int j, int k, int l)
 {
+    if (board[l][k] != ' ') {
+        return false;
+    }
     int a = i - k;
     int b = j - l;
     if (a < 0) {
