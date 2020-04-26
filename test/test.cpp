@@ -120,3 +120,21 @@ TEST(board, is_queen_move_valid){
 	ASSERT_FALSE(is_queen_move_valid(board, 4, 3, 4, 7));
 	clear(board);
 }
+
+TEST(board, is_king_move_valid){
+	char** board = make_default();
+	ASSERT_FALSE(is_king_move_valid(board, 3, 7, 6, 5));
+	ASSERT_FALSE(is_king_move_valid(board, 3, 7, 3, 5));
+	ASSERT_FALSE(is_king_move_valid(board, 3, 7, 3, 6));
+	std::string str = "d7-d5";
+	chess_move(board, str);
+	ASSERT_TRUE(is_king_move_valid(board, 3, 7, 3, 6));
+	str = "d8-d7";
+	chess_move(board, str);
+	show(board);
+	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 2, 5));
+	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 3, 7));
+	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 4, 5));
+	ASSERT_FALSE(is_king_move_valid(board, 3, 6, 1, 4));
+	clear(board);
+}
