@@ -12,10 +12,10 @@ build/board.o: src/board.cpp
 	g++ $(CFLAGS) -c src/board.cpp -o build/board.o
 
 bin/test.out: build/test.o build/board.o
-	g++ $(CFLAGS) -Lgoogletest/lib -l gtest_main -lpthread build/test.o build/board.o -o bin/test.out
+	g++ $(CFLAGS) -L googletest/lib -l gtest_main -l gtest -l pthread build/test.o build/board.o -o bin/test.out
 
 build/test.o: test/test.cpp
-	g++ $(CFLAGS) -I googletest/googletest/include -I src -c test/test.cpp -o build/test.o
+	g++ $(CFLAGS) -isystem googletest/googletest/include -l pthread -I googletest/googletest/include -I src -c test/test.cpp -o build/test.o
 
 .PHONY : clean
 clean :
