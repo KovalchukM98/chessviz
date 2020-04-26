@@ -78,3 +78,21 @@ TEST(board, is_rook_move_valid){
 	// show(board);
 	clear(board);
 }
+
+TEST(board, is_horse_move_valid){
+	char** board = make_default();
+	ASSERT_TRUE(is_horse_move_valid(board, 1, 0, 2, 2));
+	ASSERT_FALSE(is_horse_move_valid(board, 1, 0, 2, 3));
+	ASSERT_FALSE(is_horse_move_valid(board, 1, 0, 3, 1));
+	ASSERT_FALSE(is_horse_move_valid(board, 1, 0, 3, 3));
+	ASSERT_FALSE(is_horse_move_valid(board, 1, 0, 1, 3));
+	std::string str = "b1-c3";
+	chess_move(board, str);
+	// show(board);
+	ASSERT_TRUE(is_horse_move_valid(board, 2, 2, 0, 3));
+	ASSERT_TRUE(is_horse_move_valid(board, 2, 2, 3, 4));
+	ASSERT_TRUE(is_horse_move_valid(board, 2, 2, 1, 4));
+	ASSERT_TRUE(is_horse_move_valid(board, 2, 2, 4, 3));
+	ASSERT_FALSE(is_horse_move_valid(board, 2, 2, 0, 1));
+	clear(board);
+}
