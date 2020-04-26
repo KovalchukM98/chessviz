@@ -244,7 +244,10 @@ bool is_symbols_valid(int i, int j, int k, int l)
 bool chess_move(char** board, std::string str)
 {
     int i, j, k, l;
-    if (str.size() < 5) {
+    if (str.size() != 5) {
+        return false;
+    }
+    if (str[2] != '-') {
         return false;
     }
     i = str[0] - FIRST_LETTER_CODE;
