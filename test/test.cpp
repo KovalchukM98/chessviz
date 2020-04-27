@@ -139,7 +139,7 @@ TEST(board, is_king_move_valid)
 	ASSERT_TRUE(is_king_move_valid(board, 3, 7, 3, 6));
 	str = "d8-d7";
 	chess_move(board, str);
-	show(board);
+	// show(board);
 	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 2, 5));
 	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 3, 7));
 	ASSERT_TRUE(is_king_move_valid(board, 3, 6, 4, 5));
