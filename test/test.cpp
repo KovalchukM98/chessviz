@@ -2,13 +2,15 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(board, make_default) {
+TEST(board, make_default)
+{
 	char** board = make_default();
 	ASSERT_TRUE(board != NULL);
 	clear(board);
 }
 
-TEST(board, chess_move) {
+TEST(board, chess_move)
+{
 	char** board = make_default();
 	std::string str = "aaaaaaa";
 	ASSERT_FALSE(chess_move(board, str));
@@ -27,7 +29,8 @@ TEST(board, chess_move) {
 	clear(board);
 }
 
-TEST(board, is_pawn_move_valid) {
+TEST(board, is_pawn_move_valid)
+{
 	char** board = make_default();
 	ASSERT_TRUE(is_pawn_move_valid(board, 2, 1, 2, 3));
 	ASSERT_TRUE(is_pawn_move_valid(board, 2, 1, 2, 2));
@@ -39,7 +42,8 @@ TEST(board, is_pawn_move_valid) {
 	clear(board);
 }
 
-TEST(board, is_bishop_move_valid) {
+TEST(board, is_bishop_move_valid)
+{
 	char** board = make_default();
 	ASSERT_FALSE(is_bishop_move_valid(board, 2, 0, 5, 3));
 	std::string str = "d2-d4";
@@ -58,7 +62,8 @@ TEST(board, is_bishop_move_valid) {
 	clear(board);
 }
 
-TEST(board, is_rook_move_valid){
+TEST(board, is_rook_move_valid)
+{
 	char** board = make_default();
 	ASSERT_FALSE(is_rook_move_valid(board, 0, 0, 0, 1));
 	ASSERT_FALSE(is_rook_move_valid(board, 0, 0, 0, 5));
@@ -79,7 +84,8 @@ TEST(board, is_rook_move_valid){
 	clear(board);
 }
 
-TEST(board, is_horse_move_valid){
+TEST(board, is_horse_move_valid)
+{
 	char** board = make_default();
 	ASSERT_TRUE(is_horse_move_valid(board, 1, 0, 2, 2));
 	ASSERT_FALSE(is_horse_move_valid(board, 1, 0, 2, 3));
@@ -97,7 +103,8 @@ TEST(board, is_horse_move_valid){
 	clear(board);
 }
 
-TEST(board, is_queen_move_valid){
+TEST(board, is_queen_move_valid)
+{
 	char** board = make_default();
 	ASSERT_FALSE(is_queen_move_valid(board, 4, 7, 6, 5));
 	std::string str = "f7-f6";
@@ -121,7 +128,8 @@ TEST(board, is_queen_move_valid){
 	clear(board);
 }
 
-TEST(board, is_king_move_valid){
+TEST(board, is_king_move_valid)
+{
 	char** board = make_default();
 	ASSERT_FALSE(is_king_move_valid(board, 3, 7, 6, 5));
 	ASSERT_FALSE(is_king_move_valid(board, 3, 7, 3, 5));
