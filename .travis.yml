@@ -1,5 +1,8 @@
 language: C++
 
+os:
+  - linux
+
 dist: xenial
 
 script:
