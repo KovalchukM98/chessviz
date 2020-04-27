@@ -4,29 +4,29 @@
 
 TEST(board, make_default)
 {
-	char** board = make_default();
-	ASSERT_TRUE(board != NULL);
-	clear(board);
+    char** board = make_default();
+    ASSERT_TRUE(board != NULL);
+    clear(board);
 }
 
 TEST(board, chess_move)
 {
-	char** board = make_default();
-	std::string str = "aaaaaaa";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "a2-a2";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "e1-e2";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "e2 e3";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "e2-e3-e4";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "e4-e5";
-	ASSERT_FALSE(chess_move(board, str));
-	str = "e2-e4";
-	ASSERT_TRUE(chess_move(board, str));
-	clear(board);
+    char** board = make_default();
+    std::string str = "aaaaaaa";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "a2-a2";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "e1-e2";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "e2 e3";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "e2-e3-e4";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "e4-e5";
+    ASSERT_FALSE(chess_move(board, str));
+    str = "e2-e4";
+    ASSERT_TRUE(chess_move(board, str));
+    clear(board);
 }
 
 TEST(board, is_pawn_move_valid)
