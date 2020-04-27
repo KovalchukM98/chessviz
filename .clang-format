@@ -52,7 +52,7 @@ FixNamespaceComments: false
 IncludeBlocks:   Preserve
 IndentCaseLabels: false
 IndentPPDirectives: None
-IndentWidth:     8
+IndentWidth:     4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
